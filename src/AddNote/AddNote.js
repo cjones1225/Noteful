@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NoteContext from "../NoteContext";
-import ValidationError from "../ValidationError/ValidationError";
+import ValidationError from "../ValidationError";
 
 export default class AddNote extends Component {
   static contextType = NoteContext;
@@ -20,7 +20,7 @@ export default class AddNote extends Component {
     event.preventDefault();
     const content = this.content.current.value;
     const folder = this.folder.current.value;
-    this.context.Push(this.state.name, content, folder);
+    this.context.AddNote(this.state.name, content, folder);
     this.props.history.push("/");
   }
 

@@ -10,6 +10,7 @@ import config from "../config";
 import "./App.css";
 import AddFolder from "../AddFolder/AddFolder";
 import Data from "../dummy-store";
+import AddNote from "../AddNote/AddNote";
 
 class App extends Component {
   constructor(props) {
@@ -105,6 +106,43 @@ class App extends Component {
       });
   };
 
+  addNote = (Note, content, folder) => {
+    const NoteObject = {
+      name: Note,
+      content: content,
+      folderId: folder,
+      id:
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15),
+      modified: "2019-09-09T14:07:00.000Z"
+    };
+
+    fetch(`${config.API_ENDPOINT}/notes`, {
+      method: "POST",
+      body: JSON.stringify(NoteObject),
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error;
+          });
+        }
+        this.setState({
+          Notes: [...this.state.Notes.NoteObject]
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   renderNavRoutes() {
     return (
       <>
@@ -113,7 +151,7 @@ class App extends Component {
         ))}
         <Route path="/note/:noteId" component={NotePageNav} />
         <Route path="/add-folder" component={AddFolder} />
-        <Route path="/add-note" component={NotePageNav} />
+        <Route path="/add-note" component={AddNote} />
       </>
     );
   }
