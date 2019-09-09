@@ -5,40 +5,104 @@ import NoteListNav from "../NoteListNav/NoteListNav";
 import NotePageNav from "../NotePageNav/NotePageNav";
 import NoteListMain from "../NoteListMain/NoteListMain";
 import NotePageMain from "../NotePageMain/NotePageMain";
-import ApiContext from "../ApiContext";
+import NoteContext from "../NoteContext";
 import config from "../config";
 import "./App.css";
+import AddFolder from "../AddFolder/AddFolder";
+import Data from "../dummy-store";
 
 class App extends Component {
-  state = {
-    notes: [],
-    folders: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      Data,
+      folders: [],
+      Notes: [],
+      folderObject: []
+    };
+  }
 
   componentDidMount() {
-    Promise.all([
-      fetch(`${config.API_ENDPOINT}/notes`),
-      fetch(`${config.API_ENDPOINT}/folders`)
-    ])
-      .then(([notesRes, foldersRes]) => {
-        if (!notesRes.ok) return notesRes.json().then(e => Promise.reject(e));
-        if (!foldersRes.ok)
-          return foldersRes.json().then(e => Promise.reject(e));
-
-        return Promise.all([notesRes.json(), foldersRes.json()]);
+    fetch(`${config.API_ENDPOINT}/folders`, {
+      method: "GET"
+    })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(error => {
+            throw error;
+          });
+        }
+        return response.json();
       })
-      .then(([notes, folders]) => {
-        this.setState({ notes, folders });
+      .then(data => {
+        this.setState({ folders: data });
       })
       .catch(error => {
-        console.error({ error });
+        console.error(error);
+      });
+    //fetch request notes
+
+    fetch(`${config.API_ENDPOINT}/notes`, {
+      method: "GET"
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error;
+          });
+        }
+        return res.json();
+      })
+      .then(data => {
+        this.setState({
+          Notes: data
+        });
+      })
+      .catch(error => {
+        console.error(error);
       });
   }
 
-  handleDeleteNote = noteId => {
+  deletenote = newNotes => {
+    const newData = this.state.Notes.filter(n => n.id !== newNotes);
+
     this.setState({
-      notes: this.state.notes.filter(note => note.id !== noteId)
+      Notes: newData
     });
+  };
+
+  createFolder = NewFolder => {
+    const NewObject = {
+      name: NewFolder,
+      id:
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15)
+    };
+
+    fetch(`${config.API_ENDPOINT}/folders`, {
+      method: "POST",
+      body: JSON.stringify(NewObject),
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(error => {
+            throw error;
+          });
+        }
+        this.setState({
+          folders: [...this.state.folders, NewObject]
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   renderNavRoutes() {
@@ -48,7 +112,7 @@ class App extends Component {
           <Route exact key={path} path={path} component={NoteListNav} />
         ))}
         <Route path="/note/:noteId" component={NotePageNav} />
-        <Route path="/add-folder" component={NotePageNav} />
+        <Route path="/add-folder" component={AddFolder} />
         <Route path="/add-note" component={NotePageNav} />
       </>
     );
@@ -67,12 +131,15 @@ class App extends Component {
 
   render() {
     const value = {
+      data: this.state.Data,
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.deleteNote,
+      Create: this.createFolder,
+      addNotes: this.addNote
     };
     return (
-      <ApiContext.Provider value={value}>
+      <NoteContext.Provider value={value}>
         <div className="App">
           <nav className="App__nav">{this.renderNavRoutes()}</nav>
           <header className="App__header">
@@ -83,7 +150,7 @@ class App extends Component {
           </header>
           <main className="App_main">{this.renderMainRoutes()}</main>
         </div>
-      </ApiContext.Provider>
+      </NoteContext.Provider>
     );
   }
 }
