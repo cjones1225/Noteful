@@ -1,9 +1,8 @@
 import React from "react";
 import Note from "../Note/Note";
-import ApiContext from "../ApiContext";
+import NoteContext from "../NoteContext";
 import { findNote } from "../notes-helpers";
 import "./NotePageMain.css";
-import { faHandPointLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default class NotePageMain extends React.Component {
   static defaultProps = {
@@ -11,16 +10,16 @@ export default class NotePageMain extends React.Component {
       params: {}
     }
   };
-  static contextType = ApiContext;
+  static contextType = NoteContext;
 
   handleDeleteNote = noteId => {
     this.props.history.push(`/`);
   };
 
   render() {
-    const { notes = [] } = this.context;
+    const { Notes = [] } = this.context;
     const { noteId } = this.props.match.params;
-    const note = findNote(notes, noteId) || { content: "" };
+    const note = findNote(Notes, noteId) || { content: "" };
     return (
       <section className="NotePageMain">
         <Note

@@ -1,16 +1,15 @@
 import React, { Component } from "react";
+import Main from '../Main/Main';
+import Data from "../dummy-store";
 import { Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NoteListNav from "../NoteListNav/NoteListNav";
-import NotePageNav from "../NotePageNav/NotePageNav";
-import NoteListMain from "../NoteListMain/NoteListMain";
-import NotePageMain from "../NotePageMain/NotePageMain";
 import NoteContext from "../NoteContext";
 import config from "../config";
 import "./App.css";
 import AddFolder from "../AddFolder/AddFolder";
-import Data from "../dummy-store";
 import AddNote from "../AddNote/AddNote";
+import Folder from '../Folder/Folder';
+import NoteDisplay from '../NoteDisplay';
 
 class App extends Component {
   constructor(props) {
@@ -64,7 +63,7 @@ class App extends Component {
       });
   }
 
-  deletenote = newNotes => {
+  deleteNote = newNotes => {
     const newData = this.state.Notes.filter(n => n.id !== newNotes);
 
     this.setState({
@@ -135,7 +134,7 @@ class App extends Component {
           });
         }
         this.setState({
-          Notes: [...this.state.Notes.NoteObject]
+          Notes: [...this.state.Notes, NoteObject]
         });
       })
       .catch(error => {
@@ -143,51 +142,25 @@ class App extends Component {
       });
   };
 
-  renderNavRoutes() {
-    return (
-      <>
-        {["/", "/folder/:folderId"].map(path => (
-          <Route exact key={path} path={path} component={NoteListNav} />
-        ))}
-        <Route path="/note/:noteId" component={NotePageNav} />
-        <Route path="/add-folder" component={AddFolder} />
-        <Route path="/add-note" component={AddNote} />
-      </>
-    );
-  }
-
-  renderMainRoutes() {
-    return (
-      <>
-        {["/", "/folder/:folderId"].map(path => (
-          <Route exact key={path} path={path} component={NoteListMain} />
-        ))}
-        <Route path="/note/:noteId" componen={NotePageMain} />
-      </>
-    );
-  }
-
   render() {
-    const value = {
+    const contextValue = {
       data: this.state.Data,
-      notes: this.state.notes,
+      Notes: this.state.Notes,
       folders: this.state.folders,
-      deleteNote: this.deleteNote,
+      Delete: this.deleteNote,
       Create: this.createFolder,
-      addNotes: this.addNote
+      addNote: this.addNote
     };
     return (
-      <NoteContext.Provider value={value}>
-        <div className="App">
-          <nav className="App__nav">{this.renderNavRoutes()}</nav>
-          <header className="App__header">
-            <h1>
-              <Link to="/">Noteful</Link>{" "}
-              <FontAwesomeIcon icon="check-double" />
-            </h1>
-          </header>
-          <main className="App_main">{this.renderMainRoutes()}</main>
-        </div>
+      <NoteContext.Provider value={contextValue}>
+        <main className='app'>
+          <header className='header-main'><Link className='home-link' to="/"><h1>Noteful</h1></Link></header>
+          <Route path='/folder/:folderId' component={Folder}/>
+          <Route path='/note/:noteId' component={NoteDisplay}/>
+          <Route path='/' component={Main}/>
+          <Route path='/add-note' component={AddNote}/>
+          <Route path='/add-folder' component={AddFolder}/>
+        </main>
       </NoteContext.Provider>
     );
   }

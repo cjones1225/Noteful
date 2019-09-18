@@ -20,7 +20,7 @@ export default class AddNote extends Component {
     event.preventDefault();
     const content = this.content.current.value;
     const folder = this.folder.current.value;
-    this.context.AddNote(this.state.name, content, folder);
+    this.context.addNote(this.state.name, content, folder);
     this.props.history.push("/");
   }
 

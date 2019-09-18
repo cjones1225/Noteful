@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FolderList from "../FoldersList";
+import FolderList from "../FolderList/FolderList";
 import NoteSpecific from "../NoteSpecific";
 import NoteContext from "../NoteContext";
 import PropTypes from "prop-types";

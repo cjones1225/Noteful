@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Note from "../Note/Note";
 import CircleButton from "../CircleButton/CircleButton";
-import ApiContext from "../ApiContext";
-import { getNotesForFolder } from "../notes-helpers";
+import NoteContext from "../NoteContext";
 import "./NoteListMain.css";
-import { renderToJson } from "enzyme-to-json";
+import {getNotesForFolder} from '../notes-helpers';
+
 
 export default class NoteListMain extends React.Component {
   static defaultProps = {
@@ -14,12 +14,12 @@ export default class NoteListMain extends React.Component {
       params: {}
     }
   };
-  static contextType = ApiContext;
-
+  static contextType = NoteContext;
+  
   render() {
     const { folderId } = this.props.match.params;
-    const { notes = [] } = this.context;
-    const notesForFolder = getNotesForFolder(notes, folderId);
+    const { Notes = [] } = this.context;
+    const notesForFolder = getNotesForFolder(Notes, folderId);
 
     return (
       <section className="NoteListMain">

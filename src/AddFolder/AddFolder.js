@@ -53,7 +53,7 @@ class AddFolder extends Component {
           <button disabled={this.validateName()} className="addFolder">
             Add
           </button>
-          {this.state.touched && <ValidationError message={nameError} />}
+          {this.state.touched && (<ValidationError message={nameError} />)}
         </form>
         <button
           className="back-button"

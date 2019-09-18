@@ -2,15 +2,15 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircleButton from "../CircleButton/CircleButton";
-import ApiContext from "../ApiContext";
+import NoteContext from "../NoteContext";
 import { countNotesForFolder } from "../notes-helpers";
 import "./NoteListNav.css";
 
 export default class NoteListNav extends React.Component {
-  static contextType = ApiContext;
+  static contextType = NoteContext;
 
   render() {
-    const { folders = [], notes = [] } = this.context;
+    const { folders = [], Notes = [] } = this.context;
     return (
       <div className="NoteListNav">
         <ul className="NoteListNav__list">
@@ -21,7 +21,7 @@ export default class NoteListNav extends React.Component {
                 to={`/folder/${folder.id}`}
               >
                 <span className="NoteListNav__num-notes">
-                  {countNotesForFolder(notes, folder.id)}
+                  {countNotesForFolder(Notes, folder.id)}
                 </span>
                 {folder.name}
               </NavLink>

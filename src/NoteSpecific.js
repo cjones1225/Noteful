@@ -23,7 +23,10 @@ export default class NoteSpecific extends Component {
         return response.json();
       })
       .then(data => {
-        console.error(error);
+        this.context.Delete(note)
+      })
+      .catch(error => {
+        console.error(error)
       });
   };
   render() {
