@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NoteContext from "../NoteContext";
-import config from "../config";
 import "./Note.css";
 
 
