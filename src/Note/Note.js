@@ -9,7 +9,7 @@ export default class Note extends Component {
 
   deleteRequest = (note) => {
 
-    fetch(`http://localhost:9090/note/${note}`, {
+    fetch(`http://localhost:9090/notes/${note}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json"
