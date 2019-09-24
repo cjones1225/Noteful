@@ -7,10 +7,10 @@ export default class FolderList extends Component{
 
     render(){
         return(
-            <ul classname="folder-section">
+            <ul className="folder-section">
                 {this.context.folders.map(folder=>{
-                    return <li classname="folder" key={folder.id}><NavLink classname="linktofolder" activeClassName='selected-folder' to={`/folder/${folder.id}`}>{folder.name}</NavLink></li>})}
-                    <NavLink classname="AddFolderLink" to={`/add-folder`}>Add Folder</NavLink>
+                    return <li className="folder" key={folder.id}><NavLink className="linktofolder" activeClassName='selected-folder' to={`/folder/${folder.id}`}>{folder.name}</NavLink></li>})}
+                    <NavLink className="AddFolderLink" to={`/add-folder`}>Add Folder</NavLink>
             </ul>
         )
     }

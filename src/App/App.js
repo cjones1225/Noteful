@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Main from '../Main/Main';
 import Data from "../dummy-store";
 import { Route, Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NoteContext from "../NoteContext";
 import config from "../config";
 import "./App.css";

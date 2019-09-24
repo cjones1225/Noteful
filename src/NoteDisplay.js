@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import FolderListNote from './FolderListNote';
 import NoteContext from './NoteContext';
+import './NoteDisplay.css'
 
 export default class NoteDisplay extends Component {
     static contextType = NoteContext
@@ -11,9 +12,9 @@ export default class NoteDisplay extends Component {
         const note = notes.find(n => n.id === this.props.match.params.noteId)
 
         return(
-            <div classname='note-display'>
+            <div className='note-display'>
                 <FolderListNote Data={note.folderId}/>
-                <article classname='Note'>
+                <article className='Note'>
                     <h2>{note.name}</h2>
                     {note.content}
                 </article>

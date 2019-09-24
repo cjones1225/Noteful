@@ -11,14 +11,14 @@ export default class FolderListNote extends Component {
         const folder = fold.find(f => f.id === this.props.Data)
 
         return(
-            <ul classname='NoteSpecific'>
-                <NavLink classname='go-back' to={`/`}>Go Back</NavLink>
-                <li classname='folder-note-show' key={this.props.Data}>{folder.name}</li>
+            <ul className='NoteSpecific'>
+                <NavLink className='go-back' to={`/`}>Go Back</NavLink>
+                <li className='folder-note-show' key={this.props.Data}>{folder.name}</li>
             </ul>
         )
     }
 }
 
 FolderListNote.propTypes = {
-    Data: PropTypes.string
+    Data: PropTypes.array
 }

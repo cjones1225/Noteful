@@ -30,13 +30,13 @@ export default class Note extends Component {
   };
   render() {
     const notes = this.context.Notes.map(note => {
-      return <li classname="NoteBox" key={note.id}><Link classname="notelinks" to={`/note/${note.id}`}>{note.name}</Link><p>{note.modified}</p><button onClick={() => {this.deleteRequest(note.id)}} classname="delete-button">Delete</button></li>
+      return <li className="NoteBox" key={note.id}><Link className="notelinks" to={`/note/${note.id}`}>{note.name}</Link><p>{note.modified}</p><button onClick={() => {this.deleteRequest(note.id)}} className="delete-button">Delete</button></li>
     });
 
     return (
-      <ul classname='note-collection'>
+      <ul className='note-collection'>
         {notes}
-        <Link classname='AddNoteLink' to={'/add-note'}>Add Note</Link>
+        <Link className='AddNoteLink' to={'/add-note'}>Add Note</Link>
       </ul>
     );
   }
