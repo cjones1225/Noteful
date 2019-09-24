@@ -20,5 +20,5 @@ export default class FolderListNote extends Component {
 }
 
 FolderListNote.propTypes = {
-    Data: PropTypes.array
+    Data: PropTypes.string
 }
