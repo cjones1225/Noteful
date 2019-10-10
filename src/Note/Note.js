@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NoteContext from "../NoteContext";
 import "./Note.css";
+import config from '../config'
 
 
 export default class Note extends Component {
@@ -9,7 +10,7 @@ export default class Note extends Component {
 
   deleteRequest = (note) => {
 
-    fetch(`http://localhost:9090/notes/${note}`, {
+    fetch(`${config.API_ENDPOINT}${note}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json"

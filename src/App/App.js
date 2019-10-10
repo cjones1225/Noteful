@@ -156,7 +156,7 @@ class App extends Component {
           <header className='header-main'><Link className='home-link' to="/"><h1>Noteful</h1></Link></header>
           <Route path='/folder/:folderId' component={Folder}/>
           <Route path='/note/:noteId' component={NoteDisplay}/>
-          <Route path='/' component={Main}/>
+          <Route exact path='/' component={Main}/>
           <Route path='/add-note' component={AddNote}/>
           <Route path='/add-folder' component={AddFolder}/>
         </main>

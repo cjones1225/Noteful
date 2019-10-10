@@ -52,7 +52,7 @@ export default class AddNote extends Component {
         <form onSubmit={e => this.handleSumbit(e)}>
           <legend className="addNoteTitle">Add Note</legend>
           <label className="labels" htmlFor="addName">
-            Name
+            Name:
           </label>
           <input
             className="addNoteInputs"
@@ -62,7 +62,7 @@ export default class AddNote extends Component {
           />
           {this.state.touched && <ValidationError message={nameError} />}
           <label className="labels" htmlFor="addContent">
-            Content
+            Content:
           </label>
           <input
             className="addNoteInputs"
@@ -72,7 +72,7 @@ export default class AddNote extends Component {
             ref={this.content}
           />
           <label className="labels" htmlFor="addNote">
-            Folder
+            Folder:
           </label>
           <select className="addNoteInputs" ref={this.folder}>
             {options}

@@ -1,13 +1,326 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding:0 0;
+  overflow-x:hidden;
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+h1{
+  color:white;
+  width:500px;
+  height:100%;
+  margin:0 0; 
+  margin-left:30%;
+ 
+}
+h1:hover {
+  color:rgb(34, 122, 122);
+}
+a {
+  text-decoration: none;
+ color:white;
+}
+p{
+  margin:0 0;
+  padding:0 0;
+  margin-left:10px;
+}
+#root {
+  width:100%;
+  height:100%;
+}
+.App {
+  width:100%;
+}
+.main-page{
+  display:flex;
+  flex-direction:column;
+  height:1000px;
+  padding:10px 10px;
+  
+}
+.main-main {
+  width:100%;
+  margin:0px 0px; 
+}
+.header-main{
+  background-color:rgba(0, 0, 0, 0.87);
+  text-align:left;
+  margin-bottom:10px;
+  width:100%;
+}
+
+.home-link{
+  margin:0 0;
+  padding:0 0;
+  background-color:black;
+}
+.container {
+  display:flex;
+  flex-direction:row;
+  width: 100%;
+  height:100%;
+  color:black;
+}
+.main-main{
+  background-color:rgb(255, 255, 255);
+  width:70%;
+  color:black;
+
+}
+.sidebar-main{
+  background-color:rgba(29, 73, 114, 0.808);
+  display:flex;
+  width:30%;
+  flex-direction:column;
+}
+ul{
+  margin-left:10px; 
+  padding:0 0; 
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:90%;
+}
+.NoteBox{
+  list-style:none;
+  border:1px solid grey;
+  width:99%;
+  height:70px;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  margin-bottom:10px;
+}
+.notelinks {
+  margin-left:10px;
+ color: black;
+}
+.AddNoteLink {
+  color: black;
+  background-color: lightgray;
+  width: 100%;
+  text-align: center;
+}
+.delete-button{
+  position: relative;
+  bottom: -10px;
+  background-color:transparent;
+  outline:none;
+  border:1px solid black;
+  height:30%;
+  width: 80%;
+  padding:0 0; 
+}
+.folder {
+  display:flex;
+  flex-direction:column;
+  border:1px solid black;
+  width:100%;
+  align-items:center;
+  justify-content:center;
+  margin:0px auto;
+  text-decoration:none;
+  height:50px;
+}
+.folder-section{
+  margin-top:30px;
+}
+.add-folder{
+  margin-top:20px;
+  border:1px solid black;
+  background-color:transparent;
+  width:100%;
+  height:50px;
+
+}
+.addFolder:disabled {
+  background-color:rgb(126, 45, 45);
+}
+li {
+  display:flex;
+  flex-direction:column;
+
+}
+.selected-folder {
+  width:100%;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  height:100%;
+  text-align:center;
+  background-color:rgba(0, 0, 255, 0.274);
+}
+.linktofolder {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  width:100%;
+  text-align:center;
+  height:100%;
+}
+.note-display{
+  display:flex;
+  width:100%;
+}
+.NoteSpecific {
+  width:30%;
+}
+.Note {
+  width:70%;
+}
+.note-collection {
+  margin-top:10px;
+}
+.add-note{
+  outline:none;
+  background-color:transparent;
+  border:1px solid black;
+  width:200px;
+  height:50px;
+}
+.go-back{
+  width:90%;
+  border:1px solid black;
+  text-align:center;
+  height:60px;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  margin:2px 10px;
+  color:black;
+}
+.folder-note-show{
+  margin-top:20px;
+  margin-left:20px;
+}
+.folder-select {
+  width:200px;
+}
+.addnoteform{
+  color:white;
+  background-color:rgb(2, 110, 110);
+  margin-top:5px;
+  border:1px solid black;
+  display:flex;
+  width:80%;
+  margin:0 auto;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  height:80%;
+}
+.addnoteinputs{
+  margin-right:10px;
+
+}
+.labels{
+  margin-right:20px;
+  margin-left:10px;
+
+}
+.addnotetitle{
+  text-align:center;
+  margin-top:10px;
+}
+.error {
+  color:rgb(145, 36, 139);
+  margin-top:10px;
+  width:90%;
+}
+#addName{
+  width:95%;
+}
+#addContent {
+  margin-top:10px;
+  width:95%;
+  height:80px;
+  margin:0 0px;
+}
+.addFolder{
+  margin:10px;
+  border-radius:10px;
+  width:12%;
+  border:1px solid rgba(0, 132, 255, 0.89);
+  background-color:rgba(6, 57, 104, 0.89);
+  color:white;
+}
+.addFoldertitle{
+margin:10px;
+border:1px solid rgba(0, 132, 255, 0.89);
+  background-color:rgba(0, 132, 255, 0.89);
+  color:white;
+  border-radius:10px;
+  width:100px;
+  text-align:center;
+}
+.addFolderform {
+  display:flex;
+  width:70%;
+  margin-top:10px;
+  justify-content: center;
+  height:200px;
+  align-items:center;
+  flex-direction:column;
+  background-color:rgba(0, 132, 255, 0.89);
+
+}
+#addfolder{
+  width:50%;
+}
+.addNote {
+  margin-left:10px;
+  background-color:rgba(0, 128, 0, 0.247);
+  width:100px;
+  outline:none;
+  border:1px solid rgb(112, 33, 33);
+}
+.addNote:disabled {
+  background-color:rgba(255, 0, 0, 0.301);
+}
+
+.AddNoteLink {
+text-align:center;
+  border:1px solid black;
+  color:white;
+  background-color:rgba(20, 90, 20, 0.87);
+  width:100px;
+  padding:10px 10px;
+}
+.AddFolderLink {
+  margin-top:100px;
+  color:white;
+  background-color:rgba(3, 74, 167, 0.61);
+  border:1px solid black;
+  margin:10px 10px;
+  padding:10px 10px;
+}
+.Add-folder-page {
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items:center;
+}
+.back-button{
+  margin-top:10px;
+  outline:none;
+  border:none;
+  color:white;
+  width:100px;
+  background-color:rgba(12, 151, 161, 0.932);
+  border-radius:10px;
+  margin-bottom:10px;
+}
+.back-button:hover {
+  background-color:rgba(18, 127, 134, 0.932);
+  cursor:pointer;
 }
