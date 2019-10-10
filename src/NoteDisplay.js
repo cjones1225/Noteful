@@ -7,10 +7,9 @@ export default class NoteDisplay extends Component {
     static contextType = NoteContext
     
     render(){
-        const notes = this.context.Notes.map(note => note);
-        console.log(notes[0]);
-        const note = notes.find(n => n.id === this.props.match.params.noteId);
-
+        const notes = this.context.Notes.map(n => n);
+        const note = notes.find(n => n.id == this.props.match.params.noteId);
+        console.log(note);
         return(
             <div className='note-display'>
                 <FolderListNote Data={note.folder_id}/>

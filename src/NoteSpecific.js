@@ -35,7 +35,7 @@ export default class NoteSpecific extends Component {
         {this.props.notesdata.map(note => {
           return (
             <li className="NoteBox" key={note.id}>
-              <Link className="noteLinks" to={`/note/${note.id}`}>
+              <Link className="notelinks" to={`/note/${note.id}`}>
                 {note.name}
               </Link>
               <p>{note.modified}</p>
@@ -50,7 +50,7 @@ export default class NoteSpecific extends Component {
             </li>
           );
         })}
-        <Link className="AddnoteLink" to={`/AddNote`}>
+        <Link className="AddNoteLink" to={`/AddNote`}>
           Add Note
         </Link>
       </ul>

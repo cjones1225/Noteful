@@ -8,8 +8,8 @@ export default class FolderListNote extends Component {
 
     render(){
         const fold = this.context.folders.map(f => f);
-        const folder = fold.find(f => f.folder_id === this.props.Data)
-
+        const folder = fold.find(f => f.id === this.props.Data)
+        console.log(folder);
         return(
             <ul className='NoteSpecific'>
                 <NavLink className='go-back' to={`/`}>Go Back</NavLink>
@@ -19,6 +19,6 @@ export default class FolderListNote extends Component {
     }
 }
 
-FolderListNote.propTypes = {
-    Data: PropTypes.string
-}
+// FolderListNote.propTypes = {
+//     Data: PropTypes.string
+// }

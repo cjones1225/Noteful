@@ -108,7 +108,7 @@ class App extends Component {
     const NoteObject = {
       name: Note,
       content: content,
-      folderId: folder,
+      folder_id: folder,
       id:
         Math.random()
           .toString(36)

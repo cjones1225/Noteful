@@ -9,10 +9,11 @@ export default class Folder extends Component {
   static contextType = NoteContext;
 
   render() {
-    const note = this.context.Notes.filter(
-      n => n.folderId === this.props.match.params.folderId
-    );
-
+    const notes = this.context.Notes.filter(n => n.folder_id == this.props.match.params.folderId);
+    console.log(notes)
+    const filteredNotes = notes.map(note => {
+      return <li className="NoteBox" key={note.id}>{note.name}<button onClick={() => { this.deleteRequest(note.id) }} className="delete-button">Delete</button></li>
+    })
     return (
       <main className="main-page">
         <div className="container">
@@ -21,8 +22,11 @@ export default class Folder extends Component {
           </section>
           <main className="main-main">
             <Error>
-              <NoteSpecific notesdata={note} />
+              <NoteSpecific notesdata={notes} />
             </Error>
+            {/* <section>
+            {filteredNotes}
+            </section> */}
           </main>
         </div>
       </main>
