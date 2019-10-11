@@ -27,7 +27,7 @@ export default class Note extends Component {
       })
       .catch(error => {
         console.error({ error });
-      });
+      });  
   };
   render() {
     const notes = this.context.Notes.map(note => {
